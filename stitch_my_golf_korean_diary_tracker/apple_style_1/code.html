@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>
+    @layer base {
+      html, body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FFFFFF;
+        color: #111827;
+      }
+      body {
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+      }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+    }
+    ::-webkit-scrollbar { display: none; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+    }
+  </style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: "#123F32",
+            brandDark: "#0A2920",
+            hairline: "#E8ECE8",
+            surfaceSubtle: "#F9FAF9",
+          },
+          fontFamily: {
+            serif: ["Playfair Display", "serif"],
+            sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style></head><body class="bg-white text-gray-900 antialiased flex flex-col min-h-screen"><!-- Crisp White Header --><header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-hairline pt-safe"><div class="h-14 px-5 flex items-center justify-between"><div class="flex items-center"><span class="font-serif italic font-semibold text-[22px] tracking-tight text-brand select-none">my golf.</span></div><div class="flex items-center gap-2"><button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-brand transition-colors"><span class="material-symbols-outlined text-[23px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-brand flex items-center justify-center shrink-0 shadow-sm"><span class="material-symbols-outlined text-white text-[18px]">person</span></div></div></div></header><!-- Main Content Area --><main class="flex flex-col relative w-full pt-14 pb-28 bg-white min-h-screen"><div class="flex flex-col w-full px-5 pt-3">
+<!-- Greeting & Understated Primary Action -->
+<section class="flex items-center justify-between pt-3 pb-6">
+<div class="flex flex-col">
+<span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Mastery Journal</span>
+<h1 class="text-[26px] font-bold text-gray-900 tracking-tight mt-0.5">김민서 골퍼</h1>
+</div>
+<!-- Primary Action: + 기록 추가 in #123F32 -->
+<button class="inline-flex items-center gap-1.5 bg-[#123F32] text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-sm active:scale-95 transition-all" id="add-record-btn" type="button">
+<span class="material-symbols-outlined text-[17px] font-medium">add</span>
+<span>기록 추가</span>
+</button>
+</section>
+<!-- Personal Best Section -->
+<section class="mb-7">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Personal Best</span>
+<span class="text-xs text-gray-400 font-normal">역대 최고 기록</span>
+</div>
+<!-- 3 Metrics in Apple Health Style: Hairline card border, ultra-crisp -->
+<div class="grid grid-cols-3 bg-white rounded-2xl border border-hairline divide-x divide-hairline py-4 px-2 shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<!-- Metric 1: 최장 비거리 -->
+<div class="flex flex-col px-3">
+<span class="text-[11px] font-medium text-gray-500 mb-1.5">최장 비거리</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-gray-950 tracking-tight leading-none">248</span>
+<span class="text-xs font-medium text-gray-400 ml-0.5">m</span>
+</div>
+<span class="text-[11px] font-semibold text-[#8B6E2A] mt-2">드라이버</span>
+</div>
+<!-- Metric 2: 스크린 베스트 -->
+<div class="flex flex-col px-3">
+<span class="text-[11px] font-medium text-gray-500 mb-1.5">스크린 베스트</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-gray-950 tracking-tight leading-none">68</span>
+<span class="text-xs font-medium text-gray-400 ml-0.5">타</span>
+</div>
+<span class="text-[11px] font-medium text-gray-500 mt-2">-4 언더</span>
+</div>
+<!-- Metric 3: 필드 라베 -->
+<div class="flex flex-col px-3">
+<span class="text-[11px] font-medium text-gray-500 mb-1.5">필드 라베</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-gray-950 tracking-tight leading-none">81</span>
+<span class="text-xs font-medium text-gray-400 ml-0.5">타</span>
+</div>
+<span class="text-[11px] font-semibold text-[#8B6E2A] mt-2">+9 오버</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity Section (Apple Fitness Aesthetic) -->
+<section class="flex flex-col">
+<div class="flex items-center justify-between mb-2.5 px-0.5">
+<span class="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">Recent Activity</span>
+<span class="text-xs text-gray-400">최근 3회 기록</span>
+</div>
+<!-- Sleek Clean List Container -->
+<div class="flex flex-col bg-white rounded-2xl border border-hairline overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.02)]">
+<!-- Activity Row 1 -->
+<div class="flex items-center justify-between p-4 active:bg-gray-50 transition-colors cursor-pointer">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="px-2 py-0.5 bg-[#123F32] text-white rounded text-[10px] font-semibold tracking-wide">필드</span>
+<span class="text-xs text-gray-400 font-medium">5월 18일</span>
+</div>
+<span class="text-[15px] font-semibold text-gray-900 tracking-tight truncate">사우스스프링스 CC</span>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex flex-col items-end">
+<span class="text-[19px] font-bold text-gray-950 tracking-tight leading-tight">81<span class="text-xs font-normal text-gray-400 ml-0.5">타</span></span>
+<span class="text-[11px] font-semibold text-[#8B6E2A]">+9</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
+</div>
+</div>
+<!-- Hairline Divider -->
+<div class="h-[1px] w-full bg-hairline"></div>
+<!-- Activity Row 2 -->
+<div class="flex items-center justify-between p-4 active:bg-gray-50 transition-colors cursor-pointer">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] font-semibold tracking-wide">스크린</span>
+<span class="text-xs text-gray-400 font-medium">5월 14일</span>
+</div>
+<span class="text-[15px] font-semibold text-gray-900 tracking-tight truncate">골프존파크 강남점</span>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex flex-col items-end">
+<span class="text-[19px] font-bold text-gray-950 tracking-tight leading-tight">72<span class="text-xs font-normal text-gray-400 ml-0.5">타</span></span>
+<span class="text-[11px] font-medium text-[#123F32]">E (이븐)</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
+</div>
+</div>
+<!-- Hairline Divider -->
+<div class="h-[1px] w-full bg-hairline"></div>
+<!-- Activity Row 3 -->
+<div class="flex items-center justify-between p-4 active:bg-gray-50 transition-colors cursor-pointer">
+<div class="flex flex-col min-w-0 pr-3">
+<div class="flex items-center gap-2 mb-1.5">
+<span class="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-[10px] font-semibold tracking-wide">연습</span>
+<span class="text-xs text-gray-400 font-medium">5월 10일</span>
+</div>
+<span class="text-[15px] font-semibold text-gray-900 tracking-tight truncate">쇼골프 김포공항점</span>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex flex-col items-end">
+<span class="text-[19px] font-bold text-gray-950 tracking-tight leading-tight">152<span class="text-xs font-normal text-gray-400 ml-0.5">m</span></span>
+<span class="text-[11px] font-medium text-gray-500">7번 아이언</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-gray-300">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Subtle Link to All Records -->
+<div class="flex justify-center pt-5">
+<a class="inline-flex items-center gap-1.5 text-xs font-semibold text-[#123F32] hover:opacity-80 py-2 px-3 transition-opacity" href="#">
+<span>전체 일지 보기</span>
+<span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+</a>
+</div>
+</section>
+</div>
+</main><!-- Crisp White Apple Navigation Bar --><nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-md border-t border-hairline"><div class="flex items-center justify-around h-14 max-w-lg mx-auto px-4"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[52px] h-full gap-0.5 text-[#123F32]" data-path="home" href="#"><span class="material-symbols-outlined text-[22px] font-semibold">roofing</span><span class="text-[10px] font-semibold tracking-tight">홈</span></a><a class="flex flex-col items-center justify-center min-w-[52px] h-full gap-0.5 text-gray-400 hover:text-gray-700 transition-colors" data-path="journal" href="#"><span class="material-symbols-outlined text-[22px]">history_edu</span><span class="text-[10px] font-medium tracking-tight">일지</span></a><a class="flex flex-col items-center justify-center min-w-[52px] h-full gap-0.5 text-gray-400 hover:text-gray-700 transition-colors" data-path="progress" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="text-[10px] font-medium tracking-tight">성장</span></a><a class="flex flex-col items-center justify-center min-w-[52px] h-full gap-0.5 text-gray-400 hover:text-gray-700 transition-colors" data-path="my-page" href="#"><span class="material-symbols-outlined text-[22px]">account_circle</span><span class="text-[10px] font-medium tracking-tight">MY</span></a></div></nav><script>
+    document.getElementById('add-record-btn')?.addEventListener('click', function() {
+      this.classList.add('scale-95');
+      setTimeout(() => {
+        this.classList.remove('scale-95');
+      }, 120);
+    });
+  </script></body></html>

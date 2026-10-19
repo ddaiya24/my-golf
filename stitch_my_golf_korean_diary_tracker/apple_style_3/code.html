@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&amp;display=swap" rel="stylesheet"/><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><style>
+  @layer base {
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      color: #111827;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+    }
+    body {
+      overscroll-behavior-y: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .pb-safe {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    .pt-safe {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 350, 'GRAD' 0, 'opsz' 24;
+  }
+</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style></head><body class="bg-white text-neutral-900 antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-neutral-100 pt-safe"><div class="h-14 px-5 flex items-center justify-between"><div class="flex items-center gap-2"><span class="font-['Playfair_Display'] text-2xl font-semibold text-[#00281e] tracking-tight italic select-none">my golf.</span></div><div class="flex items-center gap-1.5"><button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center text-neutral-600 hover:text-neutral-950 transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><button aria-label="Profile" class="w-8 h-8 rounded-full bg-[#00281e] flex items-center justify-center shrink-0 hover:opacity-90 transition-opacity"><span class="material-symbols-outlined text-white text-[18px]">person</span></button></div></div></header><main class="flex flex-col relative w-full pt-14 pb-28 bg-white min-h-screen"><div class="flex flex-col w-full px-5 pt-5 pb-6 gap-6 max-w-lg mx-auto">
+<!-- Title Header -->
+<div class="flex items-start justify-between pt-1">
+<div class="flex flex-col">
+<span class="text-[11px] font-semibold tracking-wider uppercase text-neutral-400">Journal of Mastery</span>
+<h1 class="text-[26px] font-bold tracking-tight text-neutral-900 mt-0.5">스윙과 성장의 기록</h1>
+</div>
+<div class="flex items-center gap-1.5 bg-neutral-100/80 px-2.5 py-1 rounded-full border border-neutral-200/50">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+<span class="text-xs font-medium text-neutral-600">2025 시즌</span>
+</div>
+</div>
+<!-- 3 Key Metrics Card -->
+<div class="w-full bg-white rounded-2xl p-5 border border-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">Key Metrics</span>
+<span class="material-symbols-outlined text-neutral-400 text-[18px]">verified</span>
+</div>
+<div class="grid grid-cols-3 divide-x divide-neutral-100 pt-1">
+<div class="flex flex-col pr-2">
+<span class="text-xs text-neutral-500 mb-1">인생 라베</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-2xl font-bold tracking-tight text-neutral-900">81</span>
+<span class="text-xs text-neutral-500">타</span>
+</div>
+</div>
+<div class="flex flex-col px-3">
+<span class="text-xs text-neutral-500 mb-1">최근 5회 평균</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-2xl font-bold tracking-tight text-neutral-900">84.2</span>
+<span class="text-xs text-neutral-500">타</span>
+</div>
+</div>
+<div class="flex flex-col pl-3">
+<span class="text-xs text-neutral-500 mb-1">드라이버 평균</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-2xl font-bold tracking-tight text-[#00281e]">236</span>
+<span class="text-xs text-neutral-500">m</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart: Score Progression -->
+<div class="w-full bg-white rounded-2xl p-5 border border-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] flex flex-col gap-4">
+<div class="flex items-start justify-between flex-wrap gap-2">
+<div>
+<h2 class="text-lg font-bold text-neutral-900 tracking-tight">스코어 추이</h2>
+<p class="text-xs text-neutral-500 mt-0.5">꾸준한 안정세와 커리어 하이 경신</p>
+</div>
+<div class="flex items-center bg-neutral-100 p-0.5 rounded-full gap-0.5">
+<button class="px-2.5 py-1 rounded-full text-xs font-medium bg-neutral-900 text-white shadow-sm transition-all" id="pill-recent">최근 5회</button>
+<button class="px-2.5 py-1 rounded-full text-xs font-medium text-neutral-600 hover:text-neutral-900 transition-all" id="pill-year">2025년</button>
+<button class="px-2.5 py-1 rounded-full text-xs font-medium text-neutral-600 hover:text-neutral-900 transition-all" id="pill-all">전체</button>
+</div>
+</div>
+<!-- Goal & Chart Graphic -->
+<div class="flex flex-col pt-1">
+<div class="flex items-center justify-between text-xs mb-3">
+<div class="flex items-center gap-1.5 text-neutral-500">
+<span class="w-3 h-0.5 bg-amber-600 rounded-full inline-block"></span>
+<span>목표 싱글 (79타)</span>
+</div>
+<span class="text-[11px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200/60">2타 남음</span>
+</div>
+<div class="w-full relative h-44 flex items-center justify-center">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 340 180">
+<!-- Subtle hairline grid lines -->
+<line opacity="0.6" stroke="#f1f5f9" stroke-width="1" x1="10" x2="330" y1="30" y2="30"></line>
+<line opacity="0.6" stroke="#f1f5f9" stroke-width="1" x1="10" x2="330" y1="85" y2="85"></line>
+<!-- Target dotted line (79 score level at y=140) -->
+<line opacity="0.8" stroke="#d97706" stroke-dasharray="4,4" stroke-width="1.5" x1="20" x2="320" y1="140" y2="140"></line>
+<!-- Line path -->
+<path class="transition-all duration-500" d="M 30,50 L 95,75 L 165,85 L 235,40 L 305,125" fill="none" stroke="#123F32" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Points -->
+<g class="cursor-pointer group">
+<circle cx="30" cy="50" fill="#ffffff" r="4.5" stroke="#123F32" stroke-width="2"></circle>
+<text fill="#475569" font-family="Pretendard, Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="30" y="32">88</text>
+<text fill="#94a3b8" font-family="Pretendard, Inter, sans-serif" font-size="11" text-anchor="middle" x="30" y="166">1R</text>
+</g>
+<g class="cursor-pointer group">
+<circle cx="95" cy="75" fill="#ffffff" r="4.5" stroke="#123F32" stroke-width="2"></circle>
+<text fill="#475569" font-family="Pretendard, Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="95" y="58">86</text>
+<text fill="#94a3b8" font-family="Pretendard, Inter, sans-serif" font-size="11" text-anchor="middle" x="95" y="166">2R</text>
+</g>
+<g class="cursor-pointer group">
+<circle cx="165" cy="85" fill="#ffffff" r="4.5" stroke="#123F32" stroke-width="2"></circle>
+<text fill="#475569" font-family="Pretendard, Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="165" y="68">85</text>
+<text fill="#94a3b8" font-family="Pretendard, Inter, sans-serif" font-size="11" text-anchor="middle" x="165" y="166">3R</text>
+</g>
+<g class="cursor-pointer group">
+<circle cx="235" cy="40" fill="#ffffff" r="4.5" stroke="#123F32" stroke-width="2"></circle>
+<text fill="#475569" font-family="Pretendard, Inter, sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="235" y="24">89</text>
+<text fill="#94a3b8" font-family="Pretendard, Inter, sans-serif" font-size="11" text-anchor="middle" x="235" y="166">4R</text>
+</g>
+<!-- Best highlight point -->
+<g class="cursor-pointer">
+<circle cx="305" cy="125" fill="#123F32" r="7"></circle>
+<circle cx="305" cy="125" fill="#ffffff" r="3.5"></circle>
+<rect fill="#123F32" height="18" rx="4" width="48" x="281" y="94"></rect>
+<text fill="#ffffff" font-family="Pretendard, Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" x="305" y="107">81 라베</text>
+<text fill="#123F32" font-family="Pretendard, Inter, sans-serif" font-size="11" font-weight="700" text-anchor="middle" x="305" y="166">5R</text>
+</g>
+</svg>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-neutral-100 text-xs text-neutral-400">
+<span>3월 12일 사우스스프링스</span>
+<span>5월 20일 웰링턴 CC</span>
+</div>
+</div>
+</div>
+<!-- Chart: Driver Distance Progress -->
+<div class="w-full bg-white rounded-2xl p-5 border border-neutral-100 shadow-[0_2px_12px_rgba(0,0,0,0.04)] flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div>
+<h2 class="text-lg font-bold text-neutral-900 tracking-tight">드라이버 비거리 성장</h2>
+<p class="text-xs text-neutral-500 mt-0.5">안정적 임팩트 기반 3개월 누적 수치</p>
+</div>
+<span class="bg-emerald-50 text-emerald-800 text-[11px] font-semibold px-2 py-0.5 rounded-full border border-emerald-200/60">+18M GAIN</span>
+</div>
+<div class="flex flex-col gap-3.5 pt-1">
+<!-- 3월 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center text-xs">
+<span class="text-neutral-500">3월 평균</span>
+<span class="text-neutral-700 font-semibold text-sm">224<span class="text-xs font-normal text-neutral-400 ml-0.5">m</span></span>
+</div>
+<div class="w-full h-2.5 bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-neutral-300 rounded-full" style="width: 74%;"></div>
+</div>
+</div>
+<!-- 4월 -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center text-xs">
+<span class="text-neutral-500">4월 평균</span>
+<span class="text-neutral-700 font-semibold text-sm">231<span class="text-xs font-normal text-neutral-400 ml-0.5">m</span></span>
+</div>
+<div class="w-full h-2.5 bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-neutral-500 rounded-full" style="width: 82%;"></div>
+</div>
+</div>
+<!-- 5월 Best -->
+<div class="flex flex-col gap-1.5">
+<div class="flex justify-between items-center text-xs">
+<div class="flex items-center gap-1.5">
+<span class="font-bold text-neutral-900">5월 현재 평균</span>
+<span class="bg-[#123F32]/10 text-[#123F32] px-1.5 py-0.2 rounded text-[10px] font-bold tracking-wide">BEST</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-[#123F32] font-bold text-base">242<span class="text-xs font-normal text-neutral-500 ml-0.5">m</span></span>
+<span class="text-neutral-400 text-xs">(최고 248m)</span>
+</div>
+</div>
+<div class="w-full h-2.5 bg-neutral-100 rounded-full overflow-hidden">
+<div class="h-full bg-[#123F32] rounded-full" style="width: 93%;"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-neutral-400 pt-1 border-t border-neutral-100">
+<span>200M 기준선</span>
+<span>260M MAX</span>
+</div>
+</div>
+<!-- Coach Note: Apple Health / Fitness Minimal Pill style -->
+<div class="w-full bg-[#f8faf9] rounded-2xl p-4 border-l-4 border-[#123F32] flex items-start gap-3">
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center shrink-0 text-[#123F32] shadow-sm">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+</div>
+<div class="flex flex-col">
+<span class="text-[10px] font-bold tracking-wider text-neutral-400 uppercase">Coach Note</span>
+<p class="text-sm text-neutral-800 leading-relaxed mt-0.5">
+        최근 3개 라운드 연속 80대 초반 진입. 싱글 달성까지 단 <span class="font-bold text-[#123F32]">2타</span> 남았습니다.
+      </p>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    const pills = [
+      { id: 'pill-recent' },
+      { id: 'pill-year' },
+      { id: 'pill-all' }
+    ];
+
+    pills.forEach(item => {
+      const el = document.getElementById(item.id);
+      if (!el) return;
+      el.addEventListener('click', () => {
+        pills.forEach(p => {
+          const btn = document.getElementById(p.id);
+          if (btn) {
+            btn.classList.remove('bg-neutral-900', 'text-white', 'shadow-sm');
+            btn.classList.add('text-neutral-600');
+          }
+        });
+        el.classList.add('bg-neutral-900', 'text-white', 'shadow-sm');
+        el.classList.remove('text-neutral-600');
+      });
+    });
+  })();
+</script></main>
+<!-- Pure White Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white border-t border-neutral-100" data-active-classes="text-[#00281e] font-semibold"><div class="flex items-center justify-around h-16 max-w-lg mx-auto px-5"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-0.5 text-neutral-400 hover:text-neutral-900 transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">roofing</span><span class="text-[11px] font-medium">홈</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-0.5 text-neutral-400 hover:text-neutral-900 transition-colors" data-path="journal" href="#"><span class="material-symbols-outlined text-[22px]">history_edu</span><span class="text-[11px] font-medium">일지</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-0.5 transition-colors text-[#00281e] font-semibold" data-path="progress" href="#"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1, 'wght' 400;">insights</span><span class="text-[11px] font-semibold">성장</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-0.5 text-neutral-400 hover:text-neutral-900 transition-colors" data-path="my-page" href="#"><span class="material-symbols-outlined text-[22px]">account_circle</span><span class="text-[11px] font-medium">MY</span></a></div></nav></body></html>

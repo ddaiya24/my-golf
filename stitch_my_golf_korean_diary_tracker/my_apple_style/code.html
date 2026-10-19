@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;1,400&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#ffffff;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "on-surface": "#161d1a",
+          "on-secondary": "#ffffff",
+          "on-primary": "#ffffff",
+          "secondary": "#775a19",
+          "primary": "#00281e",
+          "background": "#ffffff",
+          "surface": "#ffffff",
+          "outline": "#8e9590",
+          "outline-variant": "#e8ece8",
+          "surface-container-low": "#fafbfa",
+          "surface-container": "#f4f6f4",
+          "on-surface-variant": "#5a6460",
+          "primary-container": "#123f32",
+          "gold-accent": "#b88e28",
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.875rem",
+          "full": "9999px"
+        },
+        spacing: {
+          "margin": "1.25rem",
+          "gutter": "0.75rem",
+          "space-xs": "0.25rem",
+          "space-sm": "0.5rem",
+          "space-md": "1rem",
+          "space-lg": "1.25rem",
+          "space-xl": "1.75rem"
+        },
+        fontFamily: {
+          "brandmark": ["Playfair Display", "serif"],
+          "body": ["Inter", "-apple-system", "BlinkMacSystemFont", "sans-serif"]
+        }
+      }
+    }
+  };
+</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-white font-body text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#f0f3f0] pt-safe"><div class="h-14 px-margin flex items-center justify-between"><div class="flex items-center"><span class="font-brandmark text-[24px] text-primary tracking-tight lowercase italic select-none">my golf.</span></div><div class="flex items-center gap-1"><button aria-label="Notifications" class="w-10 h-10 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0 ml-1"><span class="material-symbols-outlined text-white text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full pt-14 pb-24 bg-white min-h-screen"><div class="flex flex-col w-full px-margin pb-10">
+<!-- Profile Header Card (Apple Health / Fitness Clean Style) -->
+<div class="flex items-center gap-4 pt-5 pb-6 border-b border-[#f0f3f0]">
+<div class="relative shrink-0">
+<div class="w-[70px] h-[70px] rounded-full overflow-hidden ring-1 ring-black/5 bg-[#f6f7f6]">
+<img class="w-full h-full object-cover" data-alt="Refined candid portrait of an athletic Korean male golfer in his early thirties wearing a minimalist cream performance polo shirt, natural soft morning light outdoors on a lush fairway background, calm confident expression, editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnk1hJNHU4o2qCo-Vm_K6i2nIKH55r6WyUmO9RruyeWNksE_-tjKrQhbZ79nDnp7GgWhWctItLtIG3zbE8o_o-IIopO5b2Cy1eAnolpcUsFekmdYpcvPapg9ZbeqinJQbxzgx-nro80FJJvCtNFbyysmpFOHgbWa-85SnMzZwPAW2K5tAuCTYKT8jGeyeltFAm3rwGMHEMXxnGvfkdtqgJ0RxaALJiZT6rAZmm-EnGmZhFQI9LStODcA"/>
+</div>
+<div class="absolute bottom-0 right-0 w-[20px] h-[20px] rounded-full bg-primary flex items-center justify-center ring-2 ring-white">
+<span class="material-symbols-outlined text-[12px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="text-[20px] font-semibold text-[#111814] tracking-tight truncate">김진우</span>
+<span class="px-2 py-0.5 rounded-full bg-[#f2f4f2] text-primary text-[10px] font-semibold tracking-wider uppercase">Amateur</span>
+</div>
+<p class="text-[13px] text-on-surface-variant mt-0.5 font-normal">구력 3년차 · 핸디캡 12</p>
+<div class="flex items-center gap-1 mt-1.5 text-secondary text-[12px] font-medium">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span>라온 C.C 홈 코스</span>
+</div>
+</div>
+</div>
+<!-- Section 1: 누적 통계 (Lifetime Stats - Open Tabular Layout with subtle hairline dividers) -->
+<section class="flex flex-col mt-6 mb-7">
+<div class="flex items-center justify-between mb-3 px-0.5">
+<span class="text-[11px] font-semibold text-on-surface-variant tracking-wider uppercase">Lifetime Archive</span>
+<span class="text-[12px] text-[#8e9590]">누적 통계</span>
+</div>
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] divide-x divide-[#e8ece8] grid grid-cols-3 py-4">
+<div class="flex flex-col items-center text-center px-2">
+<span class="text-[11px] text-on-surface-variant font-medium mb-1.5">총 라운드</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-primary tracking-tight leading-none">42</span>
+<span class="text-[12px] text-[#8e9590] ml-0.5 font-normal">회</span>
+</div>
+<span class="text-[10px] text-secondary font-medium mt-1.5 tracking-tight">18H 정규</span>
+</div>
+<div class="flex flex-col items-center text-center px-2">
+<span class="text-[11px] text-on-surface-variant font-medium mb-1.5">연습 세션</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-primary tracking-tight leading-none">89</span>
+<span class="text-[12px] text-[#8e9590] ml-0.5 font-normal">회</span>
+</div>
+<span class="text-[10px] text-on-surface-variant font-medium mt-1.5 tracking-tight">드라이빙 레인지</span>
+</div>
+<div class="flex flex-col items-center text-center px-2">
+<span class="text-[11px] text-on-surface-variant font-medium mb-1.5">베스트 스코어</span>
+<div class="flex items-baseline gap-0.5">
+<span class="text-[30px] font-bold text-secondary tracking-tight leading-none">81</span>
+<span class="text-[12px] text-[#8e9590] ml-0.5 font-normal">타</span>
+</div>
+<span class="text-[10px] text-secondary font-medium mt-1.5 tracking-tight">+9 Par</span>
+</div>
+</div>
+</section>
+<!-- Section 2: 진행 중인 목표 (Active Goal - Apple Health style minimal card) -->
+<section class="flex flex-col mb-7">
+<div class="flex items-center justify-between mb-3 px-0.5">
+<span class="text-[11px] font-semibold text-on-surface-variant tracking-wider uppercase">Focus Target</span>
+<span class="text-[12px] text-primary font-medium">진행 중인 목표</span>
+</div>
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-5 flex flex-col gap-4">
+<div class="flex items-start justify-between gap-3">
+<div class="flex flex-col">
+<span class="text-[10px] font-semibold text-secondary tracking-wider uppercase">SEASON 2025</span>
+<h3 class="text-[16px] font-semibold text-[#111814] mt-0.5">필드 싱글 플레이어 진입</h3>
+<p class="text-[13px] text-on-surface-variant mt-0.5 font-normal">기준 스코어 79타 이하 공식 기록 달성</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-[#f4f6f4] flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[19px] text-primary" style="font-variation-settings: 'FILL' 1;">sports_score</span>
+</div>
+</div>
+<div class="flex flex-col gap-2 pt-1 border-t border-[#f0f3f0]">
+<div class="flex items-baseline justify-between mt-1">
+<div class="flex items-center gap-1.5 text-[13px]">
+<span class="text-on-surface-variant">현재 최고 기록</span>
+<span class="text-[15px] font-bold text-primary">81타</span>
+</div>
+<div class="flex items-center gap-1 text-[12px]">
+<span class="text-secondary font-medium">2타 단축 필요</span>
+<span class="text-[#8e9590]">·</span>
+<span class="text-primary font-bold">80%</span>
+</div>
+</div>
+<div class="w-full h-2 rounded-full bg-[#ecefec] overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-700 ease-out" style="width: 80%;"></div>
+</div>
+<div class="flex justify-between items-center text-[#8e9590] text-[10px] tracking-tight">
+<span>START 89타</span>
+<span>TARGET 79타</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: 주요 업적 (Key Milestones - 2x2 grid, refined & clean badges) -->
+<section class="flex flex-col mb-8">
+<div class="flex items-center justify-between mb-3 px-0.5">
+<span class="text-[11px] font-semibold text-on-surface-variant tracking-wider uppercase">Milestones</span>
+<span class="text-[12px] text-[#8e9590]">주요 업적</span>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Badge 1: 첫 필드 라운드 -->
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-4 flex flex-col justify-between h-[120px]">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-full bg-[#f4f6f4] flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px] text-primary">nature_people</span>
+</div>
+<span class="text-[10px] font-semibold tracking-wider text-[#8e9590]">2022.09</span>
+</div>
+<div>
+<h4 class="text-[14px] font-semibold text-[#111814] leading-tight">첫 필드 라운드</h4>
+<p class="text-[11px] text-on-surface-variant mt-1 truncate">오렌지듄스 영종 C.C</p>
+</div>
+</div>
+<!-- Badge 2: 첫 버디 -->
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-4 flex flex-col justify-between h-[120px]">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-full bg-[#fbf6ed] flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px] text-secondary">flare</span>
+</div>
+<span class="text-[10px] font-semibold tracking-wider text-[#8e9590]">2023.04</span>
+</div>
+<div>
+<h4 class="text-[14px] font-semibold text-[#111814] leading-tight">첫 버디 달성</h4>
+<p class="text-[11px] text-secondary font-medium mt-1 truncate">Par 3 · 6.8m 원펏</p>
+</div>
+</div>
+<!-- Badge 3: 드라이버 240m -->
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-4 flex flex-col justify-between h-[120px]">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-full bg-[#f4f6f4] flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px] text-primary">navigation</span>
+</div>
+<span class="text-[10px] font-semibold tracking-wider text-[#8e9590]">2025.05</span>
+</div>
+<div>
+<h4 class="text-[14px] font-semibold text-[#111814] leading-tight">드라이버 240m</h4>
+<p class="text-[11px] text-on-surface-variant mt-1 truncate">볼스피드 68m/s</p>
+</div>
+</div>
+<!-- Badge 4: 라베 80대 진입 -->
+<div class="bg-white rounded-xl border border-[#e8ece8] shadow-[0_1px_3px_rgba(0,0,0,0.02)] p-4 flex flex-col justify-between h-[120px]">
+<div class="flex items-center justify-between">
+<div class="w-8 h-8 rounded-full bg-[#fbf6ed] flex items-center justify-center">
+<span class="material-symbols-outlined text-[17px] text-secondary" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<span class="text-[10px] font-semibold tracking-wider text-secondary">RECORD</span>
+</div>
+<div>
+<h4 class="text-[14px] font-semibold text-[#111814] leading-tight">라베 80대 진입</h4>
+<p class="text-[11px] text-secondary font-medium mt-1 truncate">81타 (+9) 달성</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Utility Links (Clean, subtle footer) -->
+<div class="flex items-center justify-center gap-3 pt-2 pb-6 border-t border-[#f0f3f0] text-[13px]">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer py-1.5 px-3 font-medium" id="btn-export" type="button">
+      데이터 내보내기
+    </button>
+<span class="text-[#d8deda] text-[11px] select-none">•</span>
+<button class="text-[#8e9590] hover:text-[#ba1a1a] transition-colors cursor-pointer py-1.5 px-3 font-medium" id="btn-logout" type="button">
+      로그아웃
+    </button>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-20 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-full bg-[#111814] text-white text-[13px] font-medium shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-1.5" id="toast">
+<span class="material-symbols-outlined text-[16px] text-[#a3d0be]">check_circle</span>
+<span id="toast-text">기록이 백업되었습니다.</span>
+</div>
+</div>
+<script>
+  (function() {
+    const toast = document.getElementById('toast');
+    const toastText = document.getElementById('toast-text');
+    let toastTimeout;
+
+    function showToast(msg) {
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastText.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2400);
+    }
+
+    const exportBtn = document.getElementById('btn-export');
+    if (exportBtn) {
+      exportBtn.addEventListener('click', () => {
+        showToast('골프 저널 데이터(CSV)가 준비되었습니다.');
+      });
+    }
+
+    const logoutBtn = document.getElementById('btn-logout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', () => {
+        showToast('안전하게 로그아웃되었습니다.');
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-md border-t border-[#f0f3f0]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-around h-16 max-w-lg mx-auto px-margin"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-colors" data-path="home" href="#"><span class="material-symbols-outlined text-[22px]">roofing</span><span class="text-[11px] font-medium">홈</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-colors" data-path="journal" href="#"><span class="material-symbols-outlined text-[22px]">history_edu</span><span class="text-[11px] font-medium">일지</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-1 text-on-surface-variant hover:text-primary transition-colors" data-path="progress" href="#"><span class="material-symbols-outlined text-[22px]">insights</span><span class="text-[11px] font-medium">성장</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] gap-1 transition-colors text-primary font-semibold" data-path="my-page" href="#"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">account_circle</span><span class="text-[11px] font-semibold">MY</span></a></div></nav></body></html>

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Stitch 디자인 기준값 (stitch_my_golf_korean_diary_tracker/*.html 기준) */
+@theme {
+  --color-brand: #123f32;
+  --color-brand-deep: #00281e;
+  --color-gold: #8b6e2a;
+  --color-goal: #d97706;
+  --color-hairline: #e8ece8;
+  --color-subtle: #f1f5f3;
+  --color-fill: #f7f8f7;
+  --color-ink: #11181c;
+  --color-muted: #687076;
+  --color-faint: #8d9499;
+  --color-danger: #ba1a1a;
+
+  --font-sans: "Inter", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-brand: "Playfair Display", serif;
+}
+
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: var(--color-ink);
+  }
+  body {
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  button {
+    cursor: pointer;
+  }
+  input[type="date"] {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+@utility pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 350, "GRAD" 0, "opsz" 24;
+  user-select: none;
+}
+.material-symbols-outlined.icon-fill {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
