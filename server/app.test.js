@@ -381,6 +381,14 @@ describe('localStorage 가져오기', () => {
     expect((await callJson('GET', `/api/practice-sessions/${ids.s1}`)).body.clubs).toHaveLength(2);
   });
 
+  it('프로필 이름: 비어 있으면 채우고, 이미 있으면 유지', async () => {
+    await call('PUT', '/api/profile', { body: { name: '' } });
+    expect((await callJson('POST', '/api/import', { body: { profile: { name: '민서' } } })).body.inserted.profile).toBe(1);
+    expect((await callJson('GET', '/api/profile')).body).toEqual({ name: '민서' });
+    expect((await callJson('POST', '/api/import', { body: { profile: { name: '다른이름' } } })).body.inserted.profile).toBe(0);
+    expect((await callJson('GET', '/api/profile')).body).toEqual({ name: '민서' });
+  });
+
   it('이미 목표가 있으면 가져온 목표로 덮어쓰지 않는다', async () => {
     await call('POST', '/api/goals', { body: { type: 'distance', club: '드라이버', target_value: '250' } });
     const result = await callJson('POST', '/api/import', { body: legacy() });

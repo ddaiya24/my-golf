@@ -199,9 +199,12 @@ export function createRepository(db) {
           params: [userId, JSON.stringify(data.goals)],
         },
         {
+          // 이름이 이미 있으면 그대로 두고, 비어 있을 때만 채운다.
           text: `WITH ins AS (
               INSERT INTO profiles (user_id, name) SELECT $1, $2::text WHERE $2::text IS NOT NULL
-              ON CONFLICT (user_id) DO NOTHING RETURNING user_id)
+              ON CONFLICT (user_id) DO UPDATE SET name = EXCLUDED.name, updated_at = now()
+              WHERE profiles.name IS NULL
+              RETURNING user_id)
             SELECT count(*)::int AS n FROM ins`,
           params: [userId, data.profile_name],
         },
