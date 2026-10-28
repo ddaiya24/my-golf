@@ -1,6 +1,6 @@
-import { roundTitle } from './golf';
-import { sortOldestFirst, toEntries } from './entries';
-import { driverRecords } from './stats';
+import { roundTitle } from './golf.js';
+import { sortOldestFirst, toEntries } from './entries.js';
+import { driverRecords } from './stats.js';
 
 const DRIVER_MILESTONE_M = 200;
 

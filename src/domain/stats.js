@@ -1,5 +1,5 @@
-import { CLUBS, DRIVER, practiceTitle, roundTitle } from './golf';
-import { sortNewestFirst, sortOldestFirst } from './entries';
+import { CLUBS, DRIVER, practiceTitle, roundTitle } from './golf.js';
+import { sortNewestFirst, sortOldestFirst } from './entries.js';
 
 /** 스크린/필드, 9홀/18홀 구분으로 라운드를 고른다. 총타수가 없는 라운드는 통계에서 뺀다. */
 export function roundsOf(rounds, { type, holes }) {

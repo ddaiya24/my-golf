@@ -1,6 +1,6 @@
-import { TYPE_LABEL } from './golf';
-import { sortOldestFirst } from './entries';
-import { bestDistance, categoryBest, distanceRecords, roundsOf } from './stats';
+import { TYPE_LABEL } from './golf.js';
+import { sortOldestFirst } from './entries.js';
+import { bestDistance, categoryBest, distanceRecords, roundsOf } from './stats.js';
 
 /** 목표 항목의 현재 최고 기록 값 (없으면 null) */
 export function goalCurrentValue(goal, rounds, practices) {

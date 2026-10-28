@@ -1,4 +1,4 @@
-import { practiceTitle, roundTitle } from './golf';
+import { practiceTitle, roundTitle } from './golf.js';
 
 /** 라운드와 연습 세션을 일지 목록용 항목 하나로 합친다. */
 export function toEntries(rounds, practices) {

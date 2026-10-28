@@ -1,7 +1,7 @@
 // 입력 검증. 화면 폼과 서버 API가 같은 규칙을 쓴다.
 // 서버는 화면에서는 나올 수 없는 값(잘못된 종류, 긴 문자열 등)도 여기서 걸러낸다.
-import { CLUBS } from './golf';
-import { isValidISODate, todayISO } from '../utils/date';
+import { CLUBS } from './golf.js';
+import { isValidISODate, todayISO } from '../utils/date.js';
 
 export const TEXT_LIMITS = { name: 40, memo: 500, profileName: 12 };
 
