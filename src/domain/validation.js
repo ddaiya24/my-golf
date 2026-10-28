@@ -39,14 +39,16 @@ export function validateRound(form, { maxDate } = {}) {
   if (form.type !== 'screen' && form.type !== 'field') return { type: '기록 종류를 선택해 주세요.' };
   if (Number(form.holes) !== 9 && Number(form.holes) !== 18) return { holes: '홀 수를 선택해 주세요.' };
   const holes = Number(form.holes);
-  const nameKey = form.type === 'field' ? 'course_name' : 'venue_name';
+  // 필드는 골프장 이름, 스크린은 코스 이름이 필수다.
+  // 이전 버전의 스크린 기록은 매장 이름만 있을 수 있어, 매장 이름이 있으면 코스 이름 없이도 저장된다.
+  const hasName =
+    !isBlank(form.course_name) || (form.type === 'screen' && !isBlank(form.venue_name));
   return compact({
     date: checkDate(form.date, maxDate),
-    course_name: checkText(form.course_name, TEXT_LIMITS.name),
+    course_name:
+      checkText(form.course_name, TEXT_LIMITS.name) ??
+      (hasName ? null : form.type === 'field' ? '골프장 이름을 입력해 주세요.' : '코스 이름을 입력해 주세요.'),
     venue_name: checkText(form.venue_name, TEXT_LIMITS.name),
-    [nameKey]:
-      checkText(form[nameKey], TEXT_LIMITS.name) ??
-      (isBlank(form[nameKey]) ? (form.type === 'field' ? '골프장 이름을 입력해 주세요.' : '매장 이름을 입력해 주세요.') : null),
     total_strokes: checkInt(form.total_strokes, { min: holes, max: holes * 10, label: '총타수', required: true }),
     birdies: checkInt(form.birdies, { min: 0, max: holes, label: '버디 수' }),
     putts: checkInt(form.putts, { min: 0, max: holes * 6, label: '퍼트 수' }),

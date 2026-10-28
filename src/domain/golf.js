@@ -41,10 +41,10 @@ export function formatToPar(diff, style = 'short') {
   return sign;
 }
 
-/** 필드는 골프장 이름, 스크린은 매장 이름을 대표 이름으로 쓴다. */
+/** 필드는 골프장 이름, 스크린은 코스 이름을 대표 이름으로 쓴다 (코스 이름이 없는 이전 기록은 매장 이름). */
 export function roundTitle(round) {
   if (round.type === 'field') return round.course_name ?? round.venue_name ?? '필드 라운드';
-  return round.venue_name ?? round.course_name ?? '스크린 라운드';
+  return round.course_name ?? round.venue_name ?? '스크린 라운드';
 }
 
 export function practiceTitle(session) {
