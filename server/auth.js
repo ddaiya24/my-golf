@@ -50,12 +50,3 @@ export function createNeonAuth({ baseUrl, cookieSecret }) {
     },
   };
 }
-
-export function parseAllowList(value) {
-  return new Set(
-    String(value ?? '')
-      .split(',')
-      .map((item) => item.trim())
-      .filter(Boolean),
-  );
-}

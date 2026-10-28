@@ -72,7 +72,6 @@ beforeAll(async () => {
   handle = createApp({
     repo: createRepository(pgliteDb(pg)),
     auth: fakeAuth,
-    allowedUserIds: new Set(['user-a', 'user-b']),
     now: () => new Date('2026-10-20T03:00:00Z'),
   });
 });
@@ -90,10 +89,33 @@ describe('인증과 권한', () => {
     expect(await pg.query('SELECT count(*)::int AS n FROM rounds').then((r) => r.rows[0].n)).toBe(0);
   });
 
-  it('허용 목록에 없는 계정은 403 + 본인 id 안내', async () => {
-    const { status, body } = await callJson('GET', '/api/rounds', { user: 'stranger' });
-    expect(status).toBe(403);
-    expect(body).toMatchObject({ code: 'NOT_ALLOWED', userId: 'stranger' });
+  it('가입한 사용자는 누구나 사용 가능 (처음 보는 사용자도 본인 빈 기록부터 시작)', async () => {
+    await call('POST', '/api/rounds', { body: round() });
+    const { status, body } = await callJson('GET', '/api/rounds', { user: 'new-friend' });
+    expect(status).toBe(200);
+    expect(body).toEqual([]);
+    expect((await call('POST', '/api/rounds', { user: 'new-friend', body: round() })).status).toBe(201);
+  });
+
+  it('user_id는 세션에서만 가져온다: 본문·주소의 user_id는 무시', async () => {
+    const created = await callJson('POST', '/api/rounds', { body: { ...round(), user_id: 'user-b' } });
+    expect(created.body.user_id).toBeUndefined();
+    expect((await callJson('GET', '/api/rounds', { user: 'user-b' })).body).toEqual([]);
+    expect((await callJson('GET', '/api/rounds?user_id=user-b')).body).toHaveLength(1);
+    expect((await callJson('GET', '/api/rounds?user_id=user-a', { user: 'user-b' })).body).toEqual([]);
+    await call('PUT', '/api/profile', { body: { name: '민서', user_id: 'user-b' } });
+    expect((await callJson('GET', '/api/profile', { user: 'user-b' })).body).toEqual({ name: null });
+    const [{ owner }] = (await pg.query('SELECT user_id AS owner FROM rounds')).rows;
+    expect(owner).toBe('user-a');
+  });
+
+  it('가져오기 데이터 안의 user_id도 무시', async () => {
+    const id = '88888888-8888-4888-8888-888888888888';
+    await call('POST', '/api/import', {
+      body: { rounds: [{ id, user_id: 'user-b', date: '2025-05-01', type: 'field', course_name: 'A', holes: 18, total_strokes: 90 }] },
+    });
+    expect((await callJson('GET', '/api/rounds', { user: 'user-b' })).body).toEqual([]);
+    expect((await callJson('GET', `/api/rounds/${id}`)).status).toBe(200);
   });
 
   it('다른 출처에서 온 쓰기 요청은 403', async () => {

@@ -3,7 +3,7 @@
 import { HttpError, errorResponse, json, methodNotAllowed, noContent, readJson } from './http.js';
 import { createRepository } from './repository.js';
 import { createNeonDb } from './db.js';
-import { createNeonAuth, parseAllowList } from './auth.js';
+import { createNeonAuth } from './auth.js';
 import { IMPORT_MAX_ROWS, isUuid, prepareImport } from './importer.js';
 import { validateGoal, validatePractice, validateProfile, validateRound } from '../src/domain/validation.js';
 import {
@@ -60,19 +60,16 @@ function routeOf(request) {
 }
 
 /**
- * @param deps.repo        createRepository(db)
- * @param deps.auth        { proxy(request, path), getUser(request) }
- * @param deps.allowedUserIds  Set<string>  비어 있으면 아무도 쓸 수 없다 (fail closed)
- * @param deps.now         테스트용 현재 시각
+ * 인증: Neon Auth로 가입·로그인한 사용자는 누구나 쓸 수 있다. 세션이 없으면 401.
+ * 인가: user_id는 서버가 검증한 세션에서만 가져온다. 요청 본문·주소의 user_id는 쓰지 않으며,
+ *       모든 SQL 조건에 이 user_id를 넣어 본인 기록만 조회·수정·삭제되게 한다.
+ *
+ * @param deps.repo  createRepository(db)
+ * @param deps.auth  { proxy(request, path), getUser(request) }
+ * @param deps.now   테스트용 현재 시각
  */
-export function createApp({ repo, auth, allowedUserIds, now = () => new Date() }) {
-  async function authenticate(request) {
-    const { user, setCookies } = await auth.getUser(request);
-    if (!allowedUserIds.has(user.id)) {
-      throw new HttpError(403, '이 계정은 아직 사용 권한이 없습니다.', { code: 'NOT_ALLOWED', userId: user.id });
-    }
-    return { user, setCookies };
-  }
+export function createApp({ repo, auth, now = () => new Date() }) {
+  const authenticate = (request) => auth.getUser(request);
 
   async function handleRecords(request, segments, userId) {
     const [resource, id, ...rest] = segments;
@@ -216,6 +213,5 @@ export function createAppFromEnv(env) {
   return createApp({
     repo: createRepository(createNeonDb(env.DATABASE_URL)),
     auth: createNeonAuth({ baseUrl: env.NEON_AUTH_BASE_URL, cookieSecret: env.NEON_AUTH_COOKIE_SECRET }),
-    allowedUserIds: parseAllowList(env.ALLOWED_USER_IDS),
   });
 }

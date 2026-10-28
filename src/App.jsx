@@ -36,19 +36,6 @@ function AppRoutes() {
 
   if (status === 'loading') return <StatusScreen />;
   if (status === 'error') {
-    if (error?.status === 403 && error.body?.code === 'NOT_ALLOWED') {
-      return (
-        <StatusScreen
-          title="사용 권한이 없는 계정입니다"
-          message="이 앱은 허용된 계정만 사용할 수 있습니다. 앱 관리자라면 아래 사용자 ID를 서버 환경변수 ALLOWED_USER_IDS에 추가한 뒤 다시 배포하세요."
-        >
-          <code className="text-[12px] text-ink bg-fill rounded-lg px-3 py-2 break-all select-all">{error.body.userId}</code>
-          <SecondaryButton type="button" onClick={signOut} className="mt-2">
-            로그아웃
-          </SecondaryButton>
-        </StatusScreen>
-      );
-    }
     return (
       <StatusScreen title="데이터를 불러오지 못했습니다" message={error?.message}>
         <PrimaryButton type="button" onClick={reload}>
