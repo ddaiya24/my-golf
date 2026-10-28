@@ -5,6 +5,9 @@ import SectionHeader from '../components/ui/SectionHeader';
 import MetricTriple from '../components/ui/MetricTriple';
 import ConfirmDialog from '../components/ui/ConfirmDialog';
 import { useData } from '../data/DataProvider';
+import { useAuth } from '../auth/AuthProvider';
+import { backupFileName, downloadJson, getImportRecord, importLegacyData, readLegacyData } from '../data/repositories/legacy';
+import { todayISO } from '../utils/date';
 import { TYPE_LABEL, formatToPar, toPar } from '../domain/golf';
 import { sortOldestFirst, toEntries } from '../domain/entries';
 import { categoryBest, clubBests, lifetimeCounts, preferredBest } from '../domain/stats';
@@ -230,8 +233,67 @@ function AchievementBadge({ achievement }) {
   );
 }
 
+/** 이전 버전에서 이 브라우저(localStorage)에 저장한 기록을 계정으로 가져오는 안내 */
+function LegacyImportCard({ userId, onImported }) {
+  const [legacy] = useState(() => readLegacyData());
+  const [alreadyImported] = useState(() => Boolean(getImportRecord(userId)));
+  const [state, setState] = useState({ status: 'idle', message: null });
+
+  if (!legacy || legacy.total === 0 || (alreadyImported && state.status === 'idle')) return null;
+
+  const { counts } = legacy;
+  const run = async () => {
+    setState({ status: 'working', message: null });
+    try {
+      const result = await importLegacyData(userId, legacy, todayISO());
+      await onImported();
+      const added = result.inserted.rounds + result.inserted.practice_sessions + result.inserted.goals;
+      const existing =
+        result.received.rounds + result.received.practice_sessions + result.received.goals - added;
+      const parts = [`${added}개 추가`];
+      if (existing > 0) parts.push(`이미 있음 ${existing}개`);
+      if (result.skipped.length > 0) parts.push(`형식 오류로 제외 ${result.skipped.length}개`);
+      setState({ status: 'done', message: `가져오기 완료 · ${parts.join(' · ')}` });
+    } catch (error) {
+      setState({ status: 'error', message: error.message || '가져오지 못했습니다.' });
+    }
+  };
+
+  return (
+    <section className="flex flex-col mb-7">
+      <SectionHeader label="Local Records" right="이 기기의 기록" />
+      <div className={`${cardClass} p-5 flex flex-col gap-3`}>
+        <div className="flex flex-col">
+          <h3 className="text-[16px] font-semibold text-[#111814]">이전 버전 기록 가져오기</h3>
+          <p className="text-[13px] text-muted mt-0.5 leading-relaxed">
+            이 브라우저에 라운드 {counts.rounds}개 · 연습 {counts.practice_sessions}개
+            {counts.goals > 0 ? ` · 목표 ${counts.goals}개` : ''}가 저장되어 있습니다. 백업 파일을 먼저 내려받은 뒤 계정으로 가져옵니다.
+            이 기기의 원본은 지우지 않습니다.
+          </p>
+        </div>
+        {state.message && (
+          <p role="status" className={`text-[13px] ${state.status === 'error' ? 'text-danger' : 'text-brand font-medium'}`}>
+            {state.message}
+          </p>
+        )}
+        {state.status !== 'done' && (
+          <button
+            type="button"
+            onClick={run}
+            disabled={state.status === 'working'}
+            className="self-start inline-flex items-center gap-1 bg-brand text-white px-3.5 py-2 rounded-xl text-xs font-semibold disabled:opacity-50"
+          >
+            {state.status === 'working' ? '가져오는 중…' : state.status === 'error' ? '다시 시도' : '백업 후 가져오기'}
+          </button>
+        )}
+      </div>
+    </section>
+  );
+}
+
 export default function MyPage() {
-  const { rounds, practices, goal, profile, saveProfile, deleteGoal } = useData();
+  const { rounds, practices, goal, profile, saveProfile, deleteGoal, refresh } = useData();
+  const { user, signOut } = useAuth();
   const [confirmGoalDelete, setConfirmGoalDelete] = useState(false);
   const closeConfirm = useCallback(() => setConfirmGoalDelete(false), []);
 
@@ -286,6 +348,29 @@ export default function MyPage() {
           ))}
         </div>
       </section>
+
+      <LegacyImportCard userId={user.id} onImported={refresh} />
+
+      <div className="flex items-center justify-center gap-3 pt-2 border-t border-[#f0f3f0] text-[13px]">
+        <button
+          type="button"
+          onClick={() =>
+            downloadJson(backupFileName('my-golf-export', todayISO()), {
+              app: 'my-golf-diary',
+              exported_at: new Date().toISOString(),
+              data: { rounds, practice_sessions: practices, goal, profile },
+            })
+          }
+          className="text-muted hover:text-brand transition-colors py-1.5 px-3 font-medium"
+        >
+          데이터 내보내기
+        </button>
+        <span className="text-[#d8deda] text-[11px] select-none">•</span>
+        <button type="button" onClick={signOut} className="text-faint hover:text-danger transition-colors py-1.5 px-3 font-medium">
+          로그아웃
+        </button>
+      </div>
+      {user.email && <p className="text-center text-[11px] text-faint mt-1">{user.email}</p>}
 
       <ConfirmDialog
         open={confirmGoalDelete}

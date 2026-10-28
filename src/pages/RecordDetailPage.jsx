@@ -51,10 +51,10 @@ function RoundDetail({ round, rounds }) {
       <section className="mt-7">
         <SectionHeader label="Details" right="상세 기록" />
         <div className="flex flex-col bg-white rounded-2xl border border-hairline divide-y divide-hairline">
-          {round.type === 'screen' && round.course_name && (
+          {round.type === 'screen' && round.course_name && round.venue_name && (
             <div className="flex items-center justify-between gap-4 min-h-14 px-4">
-              <span className="text-[14px] text-muted shrink-0">코스</span>
-              <span className="text-[15px] font-semibold text-ink truncate">{round.course_name}</span>
+              <span className="text-[14px] text-muted shrink-0">매장</span>
+              <span className="text-[15px] font-semibold text-ink truncate">{round.venue_name}</span>
             </div>
           )}
           <InfoRow label="버디" value={round.birdies} unit="개" />

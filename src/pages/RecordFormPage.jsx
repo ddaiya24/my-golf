@@ -104,7 +104,7 @@ export default function RecordFormPage() {
     editing && editKind === 'practice' ? practiceToForm(editing) : { venue_name: '', memo: '', clubs: [newClub(CLUBS[0])] },
   );
   const [detailsOpen, setDetailsOpen] = useState(
-    Boolean(editing && editKind === 'round' && (editing.birdies != null || editing.putts != null || editing.driver_max_m != null || editing.memo || (editing.type === 'screen' && editing.course_name))),
+    Boolean(editing && editKind === 'round' && (editing.birdies != null || editing.putts != null || editing.driver_max_m != null || editing.memo || (editing.type === 'screen' && editing.venue_name))),
   );
   const [submitted, setSubmitted] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -133,7 +133,6 @@ export default function RecordFormPage() {
   const nextClub = CLUBS.find((club) => !usedClubs.has(club));
 
   const holes = Number(round.holes);
-  const nameField = type === 'field' ? 'course_name' : 'venue_name';
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -194,15 +193,15 @@ export default function RecordFormPage() {
 
         {!isPractice ? (
           <>
-            <div data-invalid={Boolean(shownErrors[nameField])}>
-              <FormField label={type === 'field' ? '골프장 이름' : '매장 이름'} htmlFor={nameField} error={shownErrors[nameField]}>
+            <div data-invalid={Boolean(shownErrors.course_name)}>
+              <FormField label={type === 'field' ? '골프장 이름' : '코스 이름'} htmlFor="course_name" error={shownErrors.course_name}>
                 <TextInput
-                  id={nameField}
-                  value={round[nameField]}
-                  onChange={(event) => setRoundField(nameField)(event.target.value)}
-                  placeholder={type === 'field' ? '예: 사우스스프링스 CC' : '예: 골프존파크 강남점'}
+                  id="course_name"
+                  value={round.course_name}
+                  onChange={(event) => setRoundField('course_name')(event.target.value)}
+                  placeholder={type === 'field' ? '예: 사우스스프링스 CC' : '스크린에서 플레이한 코스'}
                   maxLength={40}
-                  invalid={Boolean(shownErrors[nameField])}
+                  invalid={Boolean(shownErrors.course_name)}
                 />
               </FormField>
             </div>
@@ -256,8 +255,8 @@ export default function RecordFormPage() {
                     </FormField>
                   </div>
                   {type === 'screen' && (
-                    <FormField label="코스 이름 (선택)" htmlFor="course_name">
-                      <TextInput id="course_name" value={round.course_name} onChange={(event) => setRoundField('course_name')(event.target.value)} placeholder="스크린에서 플레이한 코스" maxLength={40} />
+                    <FormField label="매장 이름 (선택)" htmlFor="venue_name">
+                      <TextInput id="venue_name" value={round.venue_name} onChange={(event) => setRoundField('venue_name')(event.target.value)} placeholder="예: 골프존파크 강남점" maxLength={40} />
                     </FormField>
                   )}
                   <FormField label="메모" htmlFor="memo">

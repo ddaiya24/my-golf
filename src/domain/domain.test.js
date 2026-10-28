@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatToPar, toPar, practiceTopClub } from './golf';
+import { formatToPar, toPar, practiceTopClub, roundTitle } from './golf';
 import { groupByMonth, sortNewestFirst, toEntries } from './entries';
 import {
   bestRound,
@@ -232,8 +232,18 @@ describe('입력 검증', () => {
     expect(validateRound({ ...base, holes: '9', total_strokes: '45', birdies: '10' }).birdies).toBeTruthy();
     expect(validateRound({ ...base, date: '2999-01-01' }).date).toBeTruthy();
   });
-  it('스크린은 매장 이름이 필수', () => {
-    expect(validateRound({ ...base, type: 'screen' }).venue_name).toBeTruthy();
+  it('스크린은 코스 이름이 필수, 매장 이름은 선택', () => {
+    expect(validateRound({ ...base, type: 'screen', course_name: 'A 코스', venue_name: '' })).toEqual({});
+    expect(validateRound({ ...base, type: 'screen', course_name: '', venue_name: '' }).course_name).toBe('코스 이름을 입력해 주세요.');
+    // 이전 버전 스크린 기록(매장 이름만 있음)도 그대로 수정·저장할 수 있다.
+    expect(validateRound({ ...base, type: 'screen', course_name: '', venue_name: '골프존' })).toEqual({});
+    // 필드는 매장 이름이 있어도 골프장 이름이 필수
+    expect(validateRound({ ...base, type: 'field', course_name: '', venue_name: '골프존' }).course_name).toBe('골프장 이름을 입력해 주세요.');
+  });
+  it('스크린 기록 제목: 코스 이름 → (없으면) 매장 이름', () => {
+    expect(roundTitle({ type: 'screen', course_name: '오션 코스', venue_name: '골프존' })).toBe('오션 코스');
+    expect(roundTitle({ type: 'screen', course_name: null, venue_name: '골프존' })).toBe('골프존');
+    expect(roundTitle({ type: 'field', course_name: '사우스스프링스 CC', venue_name: null })).toBe('사우스스프링스 CC');
   });
   it('연습: 클럽 중복, 평균 > 최고', () => {
     const errors = validatePractice({

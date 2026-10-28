@@ -15,49 +15,97 @@ const INITIAL_STATE = {
   profile: { name: null },
 };
 
+async function fetchAll() {
+  const [rounds, practices, goals, profile] = await Promise.all([
+    roundsRepo.list(),
+    practiceRepo.list(),
+    goalsRepo.list(),
+    profileRepo.get(),
+  ]);
+  return { rounds, practices, goal: goals[0] ?? null, profile };
+}
+
+const replaceById = (list, row) => list.map((item) => (item.id === row.id ? row : item));
+const removeById = (list, id) => list.filter((item) => item.id !== id);
+
 export function DataProvider({ children }) {
   const [state, setState] = useState(INITIAL_STATE);
 
-  // 변경 후에는 항상 저장소 전체를 다시 읽어, 화면의 통계가 저장된 데이터와 어긋나지 않게 한다.
-  const reload = useCallback(async () => {
+  const load = useCallback(async () => {
+    setState((prev) => ({ ...prev, status: 'loading', error: null }));
     try {
-      const [rounds, practices, goals, profile] = await Promise.all([
-        roundsRepo.list(),
-        practiceRepo.list(),
-        goalsRepo.list(),
-        profileRepo.get(),
-      ]);
-      setState({ status: 'ready', error: null, rounds, practices, goal: goals[0] ?? null, profile });
+      setState({ status: 'ready', error: null, ...(await fetchAll()) });
     } catch (error) {
       setState((prev) => ({ ...prev, status: 'error', error }));
     }
   }, []);
 
-  useEffect(() => {
-    reload();
-  }, [reload]);
+  /** 화면을 비우지 않고 서버 데이터로 다시 맞춘다 (가져오기 후 등). */
+  const refresh = useCallback(async () => {
+    const data = await fetchAll();
+    setState((prev) => ({ ...prev, ...data }));
+  }, []);
 
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  // 서버가 저장에 성공했을 때만, 서버가 돌려준 행으로 상태를 바꾼다.
+  // 실패하면 예외가 그대로 화면으로 전달되고 상태는 바뀌지 않는다.
   const actions = useMemo(() => {
-    const withReload =
-      (fn) =>
-      async (...args) => {
-        const result = await fn(...args);
-        await reload();
-        return result;
-      };
+    const patch = (fn) => setState((prev) => ({ ...prev, ...fn(prev) }));
     return {
-      createRound: withReload(roundsRepo.create),
-      updateRound: withReload(roundsRepo.update),
-      deleteRound: withReload(roundsRepo.remove),
-      createPractice: withReload(practiceRepo.create),
-      updatePractice: withReload(practiceRepo.update),
-      deletePractice: withReload(practiceRepo.remove),
-      saveGoal: withReload(goalsRepo.replace),
-      updateGoal: withReload(goalsRepo.update),
-      deleteGoal: withReload(goalsRepo.remove),
-      saveProfile: withReload(profileRepo.save),
+      reload: load,
+      refresh,
+      async createRound(input) {
+        const row = await roundsRepo.create(input);
+        patch((s) => ({ rounds: [...s.rounds, row] }));
+        return row;
+      },
+      async updateRound(id, input) {
+        const row = await roundsRepo.update(id, input);
+        patch((s) => ({ rounds: replaceById(s.rounds, row) }));
+        return row;
+      },
+      async deleteRound(id) {
+        await roundsRepo.remove(id);
+        patch((s) => ({ rounds: removeById(s.rounds, id) }));
+      },
+      async createPractice(input) {
+        const row = await practiceRepo.create(input);
+        patch((s) => ({ practices: [...s.practices, row] }));
+        return row;
+      },
+      async updatePractice(id, input) {
+        const row = await practiceRepo.update(id, input);
+        patch((s) => ({ practices: replaceById(s.practices, row) }));
+        return row;
+      },
+      async deletePractice(id) {
+        await practiceRepo.remove(id);
+        patch((s) => ({ practices: removeById(s.practices, id) }));
+      },
+      async saveGoal(input) {
+        const goal = await goalsRepo.replace(input);
+        patch(() => ({ goal }));
+        return goal;
+      },
+      async updateGoal(id, input) {
+        const goal = await goalsRepo.update(id, input);
+        patch(() => ({ goal }));
+        return goal;
+      },
+      async deleteGoal(id) {
+        await goalsRepo.remove(id);
+        patch(() => ({ goal: null }));
+      },
+      async saveProfile(input) {
+        const profile = await profileRepo.save(input);
+        patch(() => ({ profile }));
+        return profile;
+      },
     };
-  }, [reload]);
+  }, [load, refresh]);
 
   const value = useMemo(() => ({ ...state, ...actions }), [state, actions]);
 
